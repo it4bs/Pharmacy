@@ -56,7 +56,6 @@
 						</div>
 							<div class="qwe">
 		 <button class="btn btn-large btn-primary btn-block pull-right" href="dashboard.html" type="submit"><i class="icon-signin icon-large"></i> Login</button>
-		 <button class="btn btn-large btn-primary btn-block pull-right" href="dashboard.html" type="submit"><i class="icon-signin icon-large"></i> Login 2</button>
 </div>
 				   <!-- </div> -->
 					</form>
