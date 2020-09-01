@@ -3,8 +3,7 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: #60a3bc !important;
-  font-family: 'Montserrat', sans-serif!important;
+  font-family: "Montserrat";
 }
 .user_card {
   height: 350px;
@@ -78,4 +77,3 @@ button.btn.btn-large.btn-primary.btn-block.pull-right {
 form {
   margin-top: 30%;
 }
-

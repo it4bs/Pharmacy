@@ -4,28 +4,23 @@
 ?>
 <head>
 <title>
-POS
+POS - Report
 </title>
- <link href="css/bootstrap.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-  
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
-
-<link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="tcal.css" />
-<script type="text/javascript" src="tcal.js"></script>
+<link rel='icon' href='./img/download.png'/>
+    <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <meta name="author" content="sumit kumar"> 
+  <title>admin-template</title> 
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css"> 
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link href="../style.css" rel="stylesheet" type="text/css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 <script language="javascript">
 function Clickheretoprint()
 { 
@@ -43,38 +38,7 @@ function Clickheretoprint()
 </script>
 
 
- <script language="javascript" type="text/javascript">
-/* Visit http://www.yaldex.com/ for full source code
-and get more free JavaScript, CSS and DHTML scripts! */
-<!-- Begin
-var timerID = null;
-var timerRunning = false;
-function stopclock (){
-if(timerRunning)
-clearTimeout(timerID);
-timerRunning = false;
-}
-function showtime () {
-var now = new Date();
-var hours = now.getHours();
-var minutes = now.getMinutes();
-var seconds = now.getSeconds()
-var timeValue = "" + ((hours >12) ? hours -12 :hours)
-if (timeValue == "0") timeValue = 12;
-timeValue += ((minutes < 10) ? ":0" : ":") + minutes
-timeValue += ((seconds < 10) ? ":0" : ":") + seconds
-timeValue += (hours >= 12) ? " P.M." : " A.M."
-document.clock.face.value = timeValue;
-timerID = setTimeout("showtime()",1000);
-timerRunning = true;
-}
-function startclock() {
-stopclock();
-showtime();
-}
-window.onload=startclock;
-// End -->
-</SCRIPT>
+ 
 </head>
 <?php
 function createRandomPassword() {
@@ -99,35 +63,8 @@ $finalcode='RS-'.createRandomPassword();
 ?>
 <body>
 <?php include('navfixed.php');?>
-<div class="container-fluid">
-      <div class="row-fluid">
-	<div class="span2">
-          <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
-			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li class="active"><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
 
-					<br><br><br><br><br><br>		
-			<li>
-			 <div class="hero-unit-clock">
-		
-			<form name="clock">
-			<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="">
-			</form>
-			  </div>
-			</li>
-				
-				</ul>     
-          </div><!--/.well -->
-        </div><!--/span-->
-	<div class="span10">
-	<div class="contentheader">
-			<i class="icon-bar-chart"></i> Sales Report
-			</div>
+	<div>
 			<ul class="breadcrumb">
 			<li><a href="index.php">Dashboard</a></li> /
 			<li class="active">Sales Report</li>
@@ -139,7 +76,7 @@ $finalcode='RS-'.createRandomPassword();
 
 </div>
 <form action="salesreport.php" method="get">
-<center><strong>From : <input type="text" style="width: 223px; padding:14px;" name="d1" class="tcal" value="" /> To: <input type="text" style="width: 223px; padding:14px;" name="d2" class="tcal" value="" />
+<center><strong>From : <input type="date" style="width: 223px; padding:14px;" name="d1" class="tcal" value="" /> To: <input type="date" style="width: 223px; padding:14px;" name="d2" class="tcal" value="" />
  <button class="btn btn-info" style="width: 123px; height:35px; margin-top:-8px;margin-left:8px;" type="submit"><i class="icon icon-search icon-large"></i> Search</button>
 </strong></center>
 </form>
@@ -243,7 +180,8 @@ Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['
 </div>
 
 </body>
-<script src="js/jquery.js"></script>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
   <script type="text/javascript">
 $(function() {
 
@@ -277,6 +215,30 @@ var info = 'id=' + del_id;
 return false;
 
 });
+
+$(".sidebar-toggle").click(function(){
+            $(this).hide();
+            
+           $("#user-profil").show();
+            
+           $("#hide-btn").show();
+            
+           $(".container-2").css("width", "85%");
+            
+             
+        });
+        
+        $("#hide-btn").click(function(){
+            $(this).hide();
+            
+           $("#user-profil").hide();
+            
+           $(".sidebar-toggle").show();
+            
+           $(".container-2").css("width", "100%");
+            
+             
+        });
 
 });
 </script>
