@@ -306,7 +306,7 @@ body {
   width: 80px;
   height: 80px;
   margin: 0 auto -40px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  /* border: 3px solid rgba(255, 255, 255, 0.3); */
   border-radius: 100%;
   color: #fff;
   transition: all ease-in-out 0.3s;
@@ -316,44 +316,26 @@ body {
 
 /* Use these to cuztomize the background color of a div. These are used along with tiles, or any other div you want to customize. */
 
-.dark-blue {
-  background-color: #34495e;
+.dark-orange {
+  background: linear-gradient(-180deg, #ffa743, #805422);
 }
-
-.green {
-  background-color: #16a085;
+.dark-green {
+  background: linear-gradient(-180deg, #02cace, #016567);
 }
-
-.blue {
-  background-color: #2980b9;
-}
-
-.orange {
-  background-color: #f39c12;
-}
-
-.red {
-  background-color: #e74c3c;
-}
-
-.purple {
-  background-color: #8e44ad;
+.dark-pink {
+  background: linear-gradient(-180deg, #fd335b, #7f1a2e);
 }
 
 .dark-gray {
-  background-color: #7f8c8d;
+  background: linear-gradient(-180deg, #888888, #343a3d);
 }
 
-.gray {
-  background-color: #95a5a6;
+.dark-blue {
+  background: linear-gradient(-180deg, #00d0f1, #17606b);
 }
 
-.light-gray {
-  background-color: #bdc3c7;
-}
-
-.yellow {
-  background-color: #f1c40f;
+.dark-purple {
+  background: linear-gradient(-180deg, #5c68c7, #21264f);
 }
 
 /* -- Text Color Helper Classes */
@@ -382,12 +364,8 @@ body {
   color: #8e44ad;
 }
 
-.text-faded {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .circle-tile-heading .fa {
-  line-height: 80px;
+  line-height: 70px;
 }
 
 .circle-tile-content {
@@ -399,7 +377,7 @@ body {
 }
 
 .text-faded {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255);
 }
 
 .circle-tile-number {
@@ -475,7 +453,6 @@ img.img-responsive {
 
 img {
   width: 25px;
-  border-radius: 50px;
   float: left;
 }
 
@@ -539,7 +516,6 @@ div#reportrange:hover {
 
 .breadcrumb {
   padding: 8px 15px;
-  margin: 0px -15px 20px -15px;
   list-style: none;
   background-color: #f5f5f5;
   -webkit-border-radius: 0 !important;
@@ -567,7 +543,7 @@ button.btn.btn-primary.btn-breadcrumb {
 /*for Supplier table*/
 table.table {
   clear: none !important;
-  width: 85% !important;
+  width: 100% !important;
   max-width: 100% !important;
 }
 
@@ -614,4 +590,24 @@ input[type="number"] {
   font-size: 15px;
   font-weight: bold;
   text-align: center;
+}
+
+/*New Style*/
+input[type="radio"],
+input[type="checkbox"] {
+  margin: -3px 6px -1px !important;
+}
+button.btn.btn-warning {
+  margin-left: 50px;
+  margin-bottom: 10px;
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 90% !important;
+    margin-left: 35px !important;
+  }
+}
+i.fa.fa.card {
+  font-size: 35px;
+  margin: 3px;
 }

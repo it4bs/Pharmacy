@@ -8,7 +8,7 @@ POS
  <link href="css/bootstrap.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-  
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css"> 
   <link rel="stylesheet" href="css/font-awesome.min.css">
     <style type="text/css">
     
@@ -114,45 +114,15 @@ window.onload=startclock;
 // End -->
 </SCRIPT>
 <body>
-
-<?php include('navfixed.php');?>
-	
-	<div class="container-fluid">
-      <div class="row-fluid">
-	<div class="span2">
-             <div class="well sidebar-nav">
-                 <ul class="nav nav-list">
-              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
-			<li class="active"><a href="sales.php?id=cash&invoice"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
-			<li><a href="sales_inventory.php"><i class="icon-table icon-2x"></i> Product Inventory</a>                </li>
-				<br><br><br><br><br><br>		
-			<li>
-			 <div class="hero-unit-clock">
-		
-			<form name="clock">
-			<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="">
-			</form>
-			  </div>
-			</li>
-				
-				</ul>           
-          </div><!--/.well -->
-        </div><!--/span-->
 		
 	<div class="span10">
-	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
-
-<div class="content" id="content">
-<div style="margin: 0 auto; padding: 20px; width: 900px; font-weight: normal;">
+	<div class="content" id="content">
+<div style="margin: 0 auto; padding: 20px; font-weight: normal;">
 	<div style="width: 100%; height: 190px;" >
-	<div style="width: 900px; float: left;">
+	<div >
 	<center><div style="font:bold 25px 'Aleo';">Sales Receipt</div>
-	EREC`s Pharmacy	<br>
-	La Castellana, Negros Occidental	<br>	<br>
+	Pharmacy<br>
+	KATN Point of Sale<br>	<br>
 	</center>
 	<div>
 	<?php
@@ -166,7 +136,7 @@ window.onload=startclock;
 	?>
 	</div>
 	</div>
-	<div style="width: 136px; float: left; height: 70px;">
+	<div style="float: left; height: 70px;">
 	<table cellpadding="3" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
 
 		<tr>
@@ -300,12 +270,16 @@ window.onload=startclock;
 	</table>
 	
 	</div>
+	
+	</div>
+	
+	</div>
+	<div style="margin-top:10px;margin-left:20px">
+		<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-primary"><i style="margin-right:10px"class="fa fa-angle-left" aria-hidden="true"></i>New Order</button></a>
+		<a href="javascript:Clickheretoprint()" style="font-size:20px;"><button class="btn btn-success"><i class="fa fa-print"></i> Print</button></a>
 	</div>
 	</div>
-	</div>
-<div class="pull-right" style="margin-right:100px;">
-		<a href="javascript:Clickheretoprint()" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print</button></a>
-		</div>	
+	
 </div>
 </div>
 

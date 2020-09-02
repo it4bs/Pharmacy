@@ -1,4 +1,6 @@
 <link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="src/facebox.js" type="text/javascript"></script>
 <form action="savesupplier.php" method="post">
 <center><h4><i class="icon-plus-sign icon-large"></i> Add Supplier</h4></center>
 <hr>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+	
 <head>
   	<title> POS - Sales </title>
 <link rel='icon' href='./img/pharmacy.png'/>
@@ -24,6 +25,7 @@
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="src/facebox.js" type="text/javascript"></script>
 <?php
+error_reporting(0);
 	require_once('auth.php');
 ?>
 	<!-- combosearch box-->	
@@ -72,18 +74,18 @@ if($position=='admin') {
 			<a href="index.php"><li>Dashboard</li></a> /
 			<li class="active">Sales</li>
 			</ul>
-<div style="margin-top: -19px; margin-bottom: 21px;">
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+<div>
+<a  href="index.php"><button class="btn btn-warning"><i class="fa fa-angle-left"></i> Back</button></a>
 </div>
-													
-<form action="incoming.php" method="post" >
+<form action="incoming.php" method="post">
 											
 <input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
+<input type="hidden" name="discount" value="<?php echo $_GET['percent']; ?>" />
 
-<select name="product" style="width:650px; "class="chzn-select" required='required'>
-<option></option>
-	<?php
+<input type="text" name="product" id='srch' class='form-control' required='required' style="width:350px; height:40px; float:left; margin-left:50px;margin-right:10px" list='list1'/>
+<datalist name='product' id='list1'>
+<?php
 	include('../connect.php');
 	$result = $db->prepare("SELECT * FROM products");
 		$result->bindParam(':userid', $res);
@@ -94,23 +96,24 @@ if($position=='admin') {
 	<?php
 				}
 			?>
-</select>
+</datalist>
 <input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" required='required'>
 <input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
-<Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" />Add</button>
+<Button type="submit" class="btn btn-info" style="width: 80px; height:40px; margin-top:-10px; margin-left:5px"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
 </form>
-
+	
 
 <div class="container table-responsive py-5"> 
 <table class="table table-bordered table-hover">
   <thead class="thead-dark">
   <tr>
   			<th>#</th>
+			<th> Product code </th>
 			<th> Product Name </th>
-			<th> Generic Name </th>
-			<th> Category / Description </th>
+			<th> Category</th>
 			<th> Price </th>
 			<th> Quantity </th>
+			<th> Total </th>
 			<th> Action </th>
 		</tr>
   </thead>
@@ -130,13 +133,14 @@ if($position=='admin') {
 			<td><?php echo $row['gen_name']; ?></td>
 			<td><?php echo $row['price']; ?></td>
 			<td><?php echo $row['qty']; ?></td>
+			<td><?php echo $row['qty'] * $row['price']; ?></td>
 			<td><a href="delete.php?id=<?php echo $row['transaction_id']; ?>&invoice=<?php echo $_GET['invoice']; ?>&dle=<?php echo $_GET['id']; ?>&qty=<?php echo $row['qty'];?>&code=<?php echo $row['product'];?>"><button class="btn btn-mini btn-danger"><i class="fa fa-times"></i>Remove</button></a></td>
 			</tr>
 			<?php
 				}
 			?>
 			<tr>
-			<td colspan="6"> Total Amount: </td>
+			<td colspan="7"> Total Amount: </td>
 			<td>
 			<?php
 			$sdsd=$_GET['invoice'];
@@ -144,31 +148,54 @@ if($position=='admin') {
 			$resultas->bindParam(':a', $sdsd);
 			$resultas->execute();
 			for($i=0; $rowas = $resultas->fetch(); $i++){
-			$fgfg=$rowas['sum(amount)'];
-			echo formatMoney($fgfg, true);}?>
+			$total_amount=$rowas['sum(amount)'];
+			echo formatMoney($total_amount, true);}?>
 				</td>
-			<tr></tr>
-			<td colspan="6"> Total Quantity: </td>
-			<td>
-			Reserver For Qunatity
+			<tr>			
 			
+			</tr>
+			<td colspan="7"> Total Quantity: </td>
+			<td>
+			<?php
+				$sdsd=$_GET['invoice'];
+				$resultas = $db->prepare("SELECT sum(qty) FROM sales_order WHERE invoice= :a");
+				$resultas->bindParam(':a', $sdsd);
+				$resultas->execute();
+				for($i=0; $rowas = $resultas->fetch(); $i++){
+				$qty=$rowas['sum(qty)'];
+			}
+			?>
+				<h4>
+				<?php
+				echo $qty;
+				?>
+				</h4>
 			</td>
 			
 		</tr>
 		<tr>
-		<td colspan  ='6'>Discount </td>
+		<td colspan  ='7'>Discount </td>
 		<td>
-		<input type="number" name="discount" value="0.0%" autocomplete="off" placeholder='0.0%' min='1.0' max='100.0' />			
-		</td>
+
+		<form action="" method="post">
+			  <input type="number" name="percent" id="percent" value='0' min='0' max='100' /></br>
+			  <Button type="submit" name="disc1" value="Calculate Total" class = 'btn btn-primary'><i class="fa fa-calculator" aria-hidden="true"></i>Calculate Discount</button>
+			</form> 
+		<?php
+			$percent=$_POST['percent'];
+			$discount_value= ($total_amount / 100) *$percent;
+			$final_price = $total_amount - $discount_value;	 
+		 ?>
+		 </td>
 		</tr>
 	
 			<tr>
-				<th colspan="6"><strong style="font-size: 15px; color: #222222;">Grand Total:</strong></th>
-			<td colspan="3">
+				<th colspan="7"><strong style="font-size: 15px; color: #222222;">Grand Total:</strong></th>
+			<td colspan="3" style="font-size :20px">
 				<?php
 				function formatMoney($number, $fractional=false) {
 					if ($fractional) {
-						$number = sprintf('%.2f', $number);
+						$number = sprintf('%.1f', $number);
 					}
 					while (true) {
 						$replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1,$2', $number);
@@ -180,21 +207,14 @@ if($position=='admin') {
 					}
 					return $number;
 				}
-				$sdsd=$_GET['invoice'];
-				$resultas = $db->prepare("SELECT sum(amount) FROM sales_order WHERE invoice= :a");
-				$resultas->bindParam(':a', $sdsd);
-				$resultas->execute();
-				for($i=0; $rowas = $resultas->fetch(); $i++){
-				$fgfg=$rowas['sum(amount)'];
-				echo formatMoney($fgfg, true);
-				}
+				echo formatMoney($final_price, true) .' PKR';
 				?>
 				</strong></td>
 			</tr>		
 			<tr>
-			<td colspan="9">
-			<a href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $fgfg ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success">SAVE</button></a>
-			<a rel="facebox" href="addsupplier.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" ><i class="icon-plus-sign icon-large"></i>Print Slip</button></a><br><br>
+			<td colspan="8">
+			<a href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $final_price ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success"><i class="fa fa-money" aria-hidden="true"></i>Generate Bill</button></a>
+			<a href="sales.php"><button class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>Cancle Invoice</button></a>
 			</td>
 			<tr>	
  </tbody>
@@ -204,7 +224,7 @@ if($position=='admin') {
 
 
 <br>
-<div class="clearfix"></div>
+<!-- <div class="clearfix"></div> -->
 </div>
 </div>
 </div>

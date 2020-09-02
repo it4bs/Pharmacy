@@ -17,7 +17,8 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 	<?php
-	require_once('auth.php');
+    require_once('auth.php');
+    include('../connect.php');
 ?>
 <?php
 function createRandomPassword() {
@@ -76,16 +77,24 @@ else if($position=='admin') {
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
                             <a href="#">
-                                <div class="circle-tile-heading dark-blue">
-                                    <i class="fa fa-users fa-fw fa-3x"></i>
+                                <div class="circle-tile-heading dark-orange">
+                                <i class="fa fa-line-chart card" aria-hidden="true"></i>
                                 </div>
+                                
                             </a>
-                            <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-content dark-orange">
                                 <div class="circle-tile-description text-faded">
-                                    Users
+                                    Products
                                 </div>
                                 <div class="circle-tile-number text-faded">
-                                    265
+                                <?php
+                                    $resultas = $db->prepare("SELECT count(product_id) FROM products");
+                                    $resultas->execute();
+                                    for($i=0; $rowas = $resultas->fetch(); $i++){
+                                    $products_count=$rowas['count(product_id)'];
+                                }
+                                echo $products_count;
+                                ?>
                                     <span id="sparklineA"></span>
                                 </div>
                                 <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
@@ -95,16 +104,74 @@ else if($position=='admin') {
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
                             <a href="#">
-                                <div class="circle-tile-heading green">
-                                    <i class="fa fa-money fa-fw fa-3x"></i>
+                                <div class="circle-tile-heading dark-green">
+                                <i class="fa fa-users card" aria-hidden="true"></i>
                                 </div>
                             </a>
-                            <div class="circle-tile-content green">
+                            <div class="circle-tile-content dark-green">
                                 <div class="circle-tile-description text-faded">
-                                    Revenue
+                                    Registerd Users
                                 </div>
                                 <div class="circle-tile-number text-faded">
-                                    $32,384
+                                <?php
+                                    $resultas = $db->prepare("SELECT COUNT(customer_id) FROM `customer`");
+                                    $resultas->execute();
+                                    for($i=0; $rowas = $resultas->fetch(); $i++){
+                                    $customers=$rowas['COUNT(customer_id)'];
+                                }
+                                echo $customers;
+                                ?>
+                                <span id="sparklineA"></span>
+                                </div>
+                                <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                        <a href="supplier.php">
+                                <div class="circle-tile-heading dark-pink">
+                                <i class="fa fa-truck card" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <div class="circle-tile-content dark-pink">
+                                <div class="circle-tile-description text-faded">
+                                supplier
+                                </div>
+                                <div class="circle-tile-number text-faded">
+                                <?php
+                                    $resultas = $db->prepare("SELECT count(suplier_id) FROM supliers");
+                                    $resultas->execute();
+                                    for($i=0; $rowas = $resultas->fetch(); $i++){
+                                    $suplier_count=$rowas['count(suplier_id)'];
+                                }
+                                echo $suplier_count;
+                                ?>
+                                </div>
+                                <a href="supplier.php" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="circle-tile">
+                            <a href="#">
+                                <div class="circle-tile-heading dark-gray">
+                                <i class="fa fa-exclamation-triangle card" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <div class="circle-tile-content dark-gray">
+                                <div class="circle-tile-description text-faded">
+                                    Low Stock Alerts
+                                </div>
+                                <div class="circle-tile-number text-faded">
+                                <?php
+                                    $resultas = $db->prepare("SELECT count(product_id) FROM products where qty < 10");
+                                    $resultas->execute();
+                                    for($i=0; $rowas = $resultas->fetch(); $i++){
+                                    $low_stock=$rowas['count(product_id)'];
+                                }
+                                echo $low_stock;
+                                ?>
                                 </div>
                                 <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
@@ -113,34 +180,23 @@ else if($position=='admin') {
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
                             <a href="#">
-                                <div class="circle-tile-heading orange">
-                                    <i class="fa fa-bell fa-fw fa-3x"></i>
+                                <div class="circle-tile-heading dark-blue">
+                                <i class="fa fa-ban card" aria-hidden="true"></i>
                                 </div>
                             </a>
-                            <div class="circle-tile-content orange">
+                            <div class="circle-tile-content dark-blue">
                                 <div class="circle-tile-description text-faded">
-                                    Alerts
+                                    Expired Products
                                 </div>
                                 <div class="circle-tile-number text-faded">
-                                    9 New
-                                </div>
-                                <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6">
-                        <div class="circle-tile">
-                            <a href="#">
-                                <div class="circle-tile-heading blue">
-                                    <i class="fa fa-tasks fa-fw fa-3x"></i>
-                                </div>
-                            </a>
-                            <div class="circle-tile-content blue">
-                                <div class="circle-tile-description text-faded">
-                                    Tasks
-                                </div>
-                                <div class="circle-tile-number text-faded">
-                                    10
+                                <?php
+                                    $resultas = $db->prepare("SELECT count(product_id) FROM products where qty < 10");
+                                    $resultas->execute();
+                                    for($i=0; $rowas = $resultas->fetch(); $i++){
+                                    $Expired=$rowas['count(product_id)'];
+                                }
+                                echo $Expired;
+                                ?>
                                     <span id="sparklineB"></span>
                                 </div>
                                 <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
@@ -150,16 +206,23 @@ else if($position=='admin') {
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
                             <a href="#">
-                                <div class="circle-tile-heading red">
-                                    <i class="fa fa-shopping-cart fa-fw fa-3x"></i>
+                                <div class="circle-tile-heading dark-purple">
+                                <i class="fa fa-money card" aria-hidden="true"></i>
                                 </div>
                             </a>
-                            <div class="circle-tile-content red">
+                            <div class="circle-tile-content dark-purple">
                                 <div class="circle-tile-description text-faded">
-                                    Orders
+                                    Revenue Earned
                                 </div>
                                 <div class="circle-tile-number text-faded">
-                                    24
+                                <?php
+                                    $resultas = $db->prepare("SELECT SUM(amount)FROM sales");
+                                    $resultas->execute();
+                                    for($i=0; $rowas = $resultas->fetch(); $i++){
+                                    $revenue=$rowas['SUM(amount)'];
+                                }
+                                echo $revenue . ' PKR';
+                                ?>
                                     <span id="sparklineC"></span>
                                 </div>
                                 <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
@@ -169,14 +232,6 @@ else if($position=='admin') {
 				</div>
     </div><!-- page-wrapper END-->
    </div><!-- container-1 END-->
- 
-    
-    
-
-
- 
-
-    
     
 <script src="js/jquery-3.1.1.js"></script>
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>

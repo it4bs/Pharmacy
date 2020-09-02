@@ -33,9 +33,20 @@
     
  <li>  
   <img class="img-circle" src="./img/download.png" alt="user image">
-    <p class="welcome"><i class="fa fa-key"></i> Welcome 
-    <span class="last-name">Admin</span>
-    <a href="#"><i class="fa fa-log-out"></i></a>
+    <p class="welcome"><i class="fa fa-user"></i> Welcome 
+    <?php
+        $position=$_SESSION['SESS_LAST_NAME'];
+        if($position=='cashier') {
+        ?>
+         <span class="last-name"><?php echo $position?></span>
+        <?php
+        }
+        else if($position=='admin') {
+         ?>
+          <span class="last-name"><?php echo $position?></span>
+        <?php
+        }
+    ?>
     </p>    
  </li>
   <li class="dashboard">
@@ -49,7 +60,7 @@
     </li>
     <li class="panel">
            <a href="products.php">
-           <i class="fa fa-bar-chart-o"></i> Products
+           <i class="fa fa-line-chart"></i> Products
            </a>
     </li>
 
@@ -57,7 +68,7 @@
     
     <li class="panel">
      <a href="supplier.php">
-      <i class="fa fa-calendar"></i> Suppliers
+      <i class="fa fa-truck"></i> Suppliers
      </a>
     </li>
     
