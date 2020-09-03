@@ -102,49 +102,29 @@ function sum() {
 			</ul>
 
 
-<div style="margin-top: -19px; margin-bottom: 21px;">
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
-			<?php 
-			include('../connect.php');
-				$result = $db->prepare("SELECT * FROM products ORDER BY qty_sold DESC");
-				$result->execute();
-				$rowcount = $result->rowcount();
-			?>
-			
-			<?php 
-			include('../connect.php');
-				$result = $db->prepare("SELECT * FROM products where qty < 10 ORDER BY product_id DESC");
-				$result->execute();
-				$rowcount123 = $result->rowcount();
-
-			?>
-				<div style="text-align:center;">
-			Total Number of Products:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
-			</div>
-			
-			<div style="text-align:center;">
-			<font style="color:rgb(255, 95, 66);; font:bold 22px 'Aleo';">[<?php echo $rowcount123;?>]</font> Products are below QTY of 10 
-			</div>
+<div>
+<a  href="index.php"><button class="btn btn-warning back" ><i class="fa fa-angle-left"></i> Back</button></a>
 </div>
-
-
-<input type="text" style="padding:15px;" name="filter" value="" id="filter" placeholder="Search Product..." autocomplete="off" />
-<a rel="facebox" href="addproduct.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Product</button></a><br><br>
-<table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
-	<thead>
+<div>
+<input type="text" name="filter" id='filter' class='form-control' required='required' style="width:550px; height:40px; float:left; margin-left:50px;margin-right:10px" placeholder= 'Search medicine...' autocomplete="off" />
+<a rel="facebox" href="addproduct.php"><Button type="submit" class="btn btn-info" style="height:40px;" ><i class="fa fa-plus"></i> Add Product</button></a><br><br>
+<div>
+<div class="container table-responsive py-5"> 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
 		<tr>
-			<th width="12%"> Brand Name </th>
-			<th width="14%"> Generic Name </th>
-			<th width="13%"> Category / Description </th>
-			<th width="7%"> Supplier </th>
-			<th width="9%"> Date Received </th>
-			<th width="10%"> Expiry Date </th>
-			<th width="6%"> Original Price </th>
-			<th width="6%"> Selling Price </th>
-			<th width="6%"> QTY </th>
-			<th width="5%"> Qty Left </th>
-			<th width="8%"> Total </th>
-			<th width="8%"> Action </th>
+			<th> Product Code </th>
+			<th> Generic Name </th>
+			<th> Product Name </th>
+			<th> Supplier </th>
+			<th> Date Received </th>
+			<th> Expiry Date </th>
+			<th> Original Price </th>
+			<th> Selling Price </th>
+			<th> Quantity Sold </th>
+			<th> Quantity Left </th>
+			<th> Total </th>
+			<th> Action </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -165,13 +145,13 @@ function sum() {
 					return $number;
 				}
 				include('../connect.php');
-				$result = $db->prepare("SELECT *, price * qty as total FROM products ORDER BY product_id DESC");
+				$result = $db->prepare("SELECT *, price * qty as total FROM products ORDER BY qty DESC");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 				$total=$row['total'];
 				$availableqty=$row['qty'];
 				if ($availableqty < 10) {
-				echo '<tr class="alert alert-warning record" style="color: #fff; background:rgb(255, 95, 66);">';
+				echo '<tr class="alert alert-danger record" style="color: #000;">';
 				}
 				else {
 				echo '<tr class="record">';
@@ -182,7 +162,7 @@ function sum() {
 			<td><?php echo $row['product_code']; ?></td>
 			<td><?php echo $row['gen_name']; ?></td>
 			<td><?php echo $row['product_name']; ?></td>
-					<td><?php echo $row['supplier']; ?></td>
+			<td><?php echo $row['supplier']; ?></td>
 			<td><?php echo $row['date_arrival']; ?></td>
 			<td><?php echo $row['expiry_date']; ?></td>
 			<td><?php
@@ -200,8 +180,8 @@ function sum() {
 			$total=$row['total'];
 			echo formatMoney($total, true);
 			?>
-			</td>			<td><a rel="facebox" title="Click to edit the product" href="editproduct.php?id=<?php echo $row['product_id']; ?>"><button class="btn btn-warning"><i class="icon-edit"></i> </button> </a>
-			<a href="#" id="<?php echo $row['product_id']; ?>" class="delbutton" title="Click to Delete the product"><button class="btn btn-danger"><i class="icon-trash"></i></button></a></td>
+			</td><td><a rel="facebox" title="Click to edit the product" href="editproduct.php?id=<?php echo $row['product_id']; ?>"><button class="btn btn-warning"><i class="fa fa-edit"></i>Edit </button> </a>
+			<a href="#" id="<?php echo $row['product_id']; ?>" class="delbutton" title="Click to Delete the product"><button class="btn btn-danger"><i class="fa fa-trash"></i>Delete</button></a></td>
 			</tr>
 			<?php
 				}

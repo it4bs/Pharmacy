@@ -6,9 +6,7 @@
 	$qty=$_GET['qty'];
 	$wapak=$_GET['code'];
 	//edit qty
-	$sql = "UPDATE products 
-			SET qty=qty+?
-			WHERE product_id=?";
+	$sql = "UPDATE products SET qty=qty+? , `qty_sold`=qty_sold - $qty WHERE product_id=?";
 	$q = $db->prepare($sql);
 	$q->execute(array($qty,$wapak));
 

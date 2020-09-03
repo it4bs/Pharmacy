@@ -75,30 +75,33 @@ if($position=='admin') {
 			<li class="active">Sales</li>
 			</ul>
 <div>
-<a  href="index.php"><button class="btn btn-warning"><i class="fa fa-angle-left"></i> Back</button></a>
+<a  href="index.php"><button class="btn btn-warning back"><i class="fa fa-angle-left"></i> Back</button></a>
 </div>
-<form action="incoming.php" method="post">
+<form action="incoming.php" method="post" autocomplete="off">
 											
 <input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
 <input type="hidden" name="discount" value="<?php echo $_GET['percent']; ?>" />
 
-<input type="text" name="product" id='srch' class='form-control' required='required' style="width:350px; height:40px; float:left; margin-left:50px;margin-right:10px" list='list1'/>
+<input type="text" name="product" id='srch' autocomplete='off' class='form-control' required='required' style="width:350px; height:40px; float:left; margin-left:50px;margin-right:10px" list='list1'/>
 <datalist name='product' id='list1'>
 <?php
 	include('../connect.php');
-	$result = $db->prepare("SELECT * FROM products");
-		$result->bindParam(':userid', $res);
+		$result = $db->prepare("SELECT * FROM products");
 		$result->execute();
 		for($i=0; $row = $result->fetch(); $i++){
-	?>
-		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_name']; ?></option>
-	<?php
+				$toBeComparedDate = $row['expiry_date'];
+				$today = (new DateTime())->format('Y-m-d');
+				$expired = $toBeComparedDate > $today;
+			if(($row['qty'] > 0) && ($expired)){	
+				?>
+			<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_name']; }?></option>
+		<?php 
 				}
 			?>
 </datalist>
-<input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" required='required'>
-<input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
+<input type="number" name="qty" value="1" min="1" max =<?php echo $qty1; ?> placeholder="Qty" required='required'>
+<input type="hidden" name="date" value="<?php echo date("m/d/yy"); ?>" />
 <Button type="submit" class="btn btn-info" style="width: 80px; height:40px; margin-top:-10px; margin-left:5px"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
 </form>
 	
@@ -179,7 +182,7 @@ if($position=='admin') {
 
 		<form action="" method="post">
 			  <input type="number" name="percent" id="percent" value='0' min='0' max='100' /></br>
-			  <Button type="submit" name="disc1" value="Calculate Total" class = 'btn btn-primary'><i class="fa fa-calculator" aria-hidden="true"></i>Calculate Discount</button>
+			  <Button type="submit" name="disc1" value="Calculate Total" class = 'btn btn-primary'><i class="fa fa-calculator" aria-hidden="true"></i>Discount</button>
 			</form> 
 		<?php
 			$percent=$_POST['percent'];
@@ -191,7 +194,7 @@ if($position=='admin') {
 	
 			<tr>
 				<th colspan="7"><strong style="font-size: 15px; color: #222222;">Grand Total:</strong></th>
-			<td colspan="3" style="font-size :20px">
+			<td colspan="3" style="font-size :25px; font-weight:bolder">
 				<?php
 				function formatMoney($number, $fractional=false) {
 					if ($fractional) {
@@ -214,7 +217,7 @@ if($position=='admin') {
 			<tr>
 			<td colspan="8">
 			<a href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $final_price ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success"><i class="fa fa-money" aria-hidden="true"></i>Generate Bill</button></a>
-			<a href="sales.php"><button class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>Cancle Invoice</button></a>
+			<a href="sales.php"><button class="btn btn-danger" style="margin-bottom: 0px;"><i class="fa fa-times" aria-hidden="true"></i>Cancle Invoice</button></a>
 			</td>
 			<tr>	
  </tbody>
@@ -224,7 +227,6 @@ if($position=='admin') {
 
 
 <br>
-<!-- <div class="clearfix"></div> -->
 </div>
 </div>
 </div>

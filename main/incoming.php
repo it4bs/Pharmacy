@@ -19,9 +19,7 @@ $p=$row['profit'];
 }
 
 //edit qty
-$sql = "UPDATE products 
-        SET qty=qty-?
-		WHERE product_id=?";
+$sql = "UPDATE `products` SET `qty`=qty - ?, `qty_sold`=qty_sold + $c WHERE `product_id`=?";
 $q = $db->prepare($sql);
 $q->execute(array($c,$b));
 $fffffff=$asasa-$discount;

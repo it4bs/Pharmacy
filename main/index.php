@@ -76,12 +76,9 @@ else if($position=='admin') {
         <div class="row" >
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="#">
                                 <div class="circle-tile-heading dark-orange">
                                 <i class="fa fa-line-chart card" aria-hidden="true"></i>
                                 </div>
-                                
-                            </a>
                             <div class="circle-tile-content dark-orange">
                                 <div class="circle-tile-description text-faded">
                                     Products
@@ -97,17 +94,16 @@ else if($position=='admin') {
                                 ?>
                                     <span id="sparklineA"></span>
                                 </div>
-                                <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="products.php" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="#">
                                 <div class="circle-tile-heading dark-green">
                                 <i class="fa fa-users card" aria-hidden="true"></i>
                                 </div>
-                            </a>
+                         
                             <div class="circle-tile-content dark-green">
                                 <div class="circle-tile-description text-faded">
                                     Registerd Users
@@ -123,17 +119,15 @@ else if($position=='admin') {
                                 ?>
                                 <span id="sparklineA"></span>
                                 </div>
-                                <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="customer.php" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                        <a href="supplier.php">
                                 <div class="circle-tile-heading dark-pink">
                                 <i class="fa fa-truck card" aria-hidden="true"></i>
                                 </div>
-                            </a>
                             <div class="circle-tile-content dark-pink">
                                 <div class="circle-tile-description text-faded">
                                 supplier
@@ -154,12 +148,10 @@ else if($position=='admin') {
                     </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="#">
-                                <div class="circle-tile-heading dark-gray">
+                                <div class="circle-tile-heading dark-red">
                                 <i class="fa fa-exclamation-triangle card" aria-hidden="true"></i>
                                 </div>
-                            </a>
-                            <div class="circle-tile-content dark-gray">
+                            <div class="circle-tile-content dark-red">
                                 <div class="circle-tile-description text-faded">
                                     Low Stock Alerts
                                 </div>
@@ -173,17 +165,17 @@ else if($position=='admin') {
                                 echo $low_stock;
                                 ?>
                                 </div>
-                                <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="sales_inventory.php" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="#">
+                            
                                 <div class="circle-tile-heading dark-blue">
                                 <i class="fa fa-ban card" aria-hidden="true"></i>
                                 </div>
-                            </a>
+            
                             <div class="circle-tile-content dark-blue">
                                 <div class="circle-tile-description text-faded">
                                     Expired Products
@@ -199,17 +191,17 @@ else if($position=='admin') {
                                 ?>
                                     <span id="sparklineB"></span>
                                 </div>
-                                <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="expired_products_list.php" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-6">
                         <div class="circle-tile">
-                            <a href="#">
+                
                                 <div class="circle-tile-heading dark-purple">
                                 <i class="fa fa-money card" aria-hidden="true"></i>
                                 </div>
-                            </a>
+                        
                             <div class="circle-tile-content dark-purple">
                                 <div class="circle-tile-description text-faded">
                                     Revenue Earned
@@ -225,7 +217,7 @@ else if($position=='admin') {
                                 ?>
                                     <span id="sparklineC"></span>
                                 </div>
-                                <a href="#" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
+                                <a href="revenue_earned.php" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
 					</div>
