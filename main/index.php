@@ -182,13 +182,15 @@ else if($position=='admin') {
                                 </div>
                                 <div class="circle-tile-number text-faded">
                                 <?php
-                                    $resultas = $db->prepare("SELECT count(product_id) FROM products where qty < 10");
-                                    $resultas->execute();
-                                    for($i=0; $rowas = $resultas->fetch(); $i++){
-                                    $Expired=$rowas['count(product_id)'];
-                                }
-                                echo $Expired;
-                                ?>
+                                        include('../connect.php');
+                                        $today = (new DateTime())->format('yy-m-d');
+                                        $result = $db->prepare("SELECT COUNT(product_id) FROM `products` WHERE `expiry_date` < '$today'");
+                                        $result->execute();
+                                        for($i=0; $row = $result->fetch(); $i++){ 
+                                                $count = $row['COUNT(product_id)'];
+                                                echo $count;
+                                            }
+                                        ?>
                                     <span id="sparklineB"></span>
                                 </div>
                                 <a href="expired_products_list.php" class="circle-tile-footer">View All <i class="fa fa-chevron-circle-right"></i></a>

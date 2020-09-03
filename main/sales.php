@@ -81,9 +81,9 @@ if($position=='admin') {
 											
 <input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-<input type="hidden" name="discount" value="<?php echo $_GET['percent']; ?>" />
+<input type="text" name="discount" value="<?php echo $_GET['percent']; ?>" />
 
-<input type="text" name="product" id='srch' autocomplete='off' class='form-control' required='required' style="width:350px; height:40px; float:left; margin-left:50px;margin-right:10px" list='list1'/>
+<input type="text" name="product" id='srch' placeholder='Enter Product Name/ID...' autocomplete='off' class='form-control' required='required' style="width:350px; height:40px; float:left; margin-left:50px;margin-right:10px" list='list1'/>
 <datalist name='product' id='list1'>
 <?php
 	include('../connect.php');
