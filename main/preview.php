@@ -6,6 +6,7 @@
 POS
 </title>
  <link href="css/bootstrap.css" rel="stylesheet">
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
     <style type="text/css">
@@ -13,6 +14,17 @@ POS
         padding: 9px 0;
       }
 	  
+=======
+
+    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
+  
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+    <style type="text/css">
+    
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+>>>>>>> 232f54eab7ba80b84f16c1c6a3f830d89a7d3e1d
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
@@ -113,21 +125,62 @@ window.onload=startclock;
 </SCRIPT>
 <body>
 
+<<<<<<< HEAD
 
 	
 	<div class="container-fluid">
       <div class="row-fluid">	
 	<div class="span10">
+=======
+<?php include('navfixed.php');?>
+	
+	<div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span2">
+             <div class="well sidebar-nav">
+                 <ul class="nav nav-list">
+              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+			<li class="active"><a href="sales.php?id=cash&invoice"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
+			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
+			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
+			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
+			<li><a href="sales_inventory.php"><i class="icon-table icon-2x"></i> Product Inventory</a>                </li>
+				<br><br><br><br><br><br>		
+			<li>
+			 <div class="hero-unit-clock">
+		
+			<form name="clock">
+			<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="">
+			</form>
+			  </div>
+			</li>
+				
+				</ul>           
+          </div><!--/.well -->
+        </div><!--/span-->
+		
+	<div class="span10">
+	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
+>>>>>>> 232f54eab7ba80b84f16c1c6a3f830d89a7d3e1d
 
 <div class="content" id="content">
 <div style="margin: 0 auto; padding: 20px; width: 900px; font-weight: normal;">
 	<div style="width: 100%; height: 190px;" >
 	<div style="width: 900px; float: left;">
+<<<<<<< HEAD
 	<center><div style="font:bold 25px  'Aleo';">Sales Receipt</div>
 	
 	</center>
 	<div>
 	<center><p style="margin-top:5px;margin-bottom:10px;">KATN Point Of Sale<br></p>1st Floor, CH. Heights, Citi Housing, Jhelum<br><br></center>
+=======
+	<center><div style="font:bold 25px 'Aleo';">Sales Receipt</div>
+	EREC`s Pharmacy	<br>
+	La Castellana, Negros Occidental	<br>	<br>
+	</center>
+	<div>
+>>>>>>> 232f54eab7ba80b84f16c1c6a3f830d89a7d3e1d
 	<?php
 	$resulta = $db->prepare("SELECT * FROM customer WHERE customer_name= :a");
 	$resulta->bindParam(':a', $cname);
@@ -139,6 +192,7 @@ window.onload=startclock;
 	?>
 	</div>
 	</div>
+<<<<<<< HEAD
 	<div style="margin-bottom:20px; float: left; height: 70px;">
 	<table cellpadding="3" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
 
@@ -154,16 +208,36 @@ window.onload=startclock;
 			<td><b>Customer Name :</b></td>
 			<td><?php echo $cname ?></td>
 		</tr>
+=======
+	<div style="width: 136px; float: left; height: 70px;">
+	<table cellpadding="3" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
+
+		<tr>
+			<td>OR No. :</td>
+			<td><?php echo $invoice ?></td>
+		</tr>
+		<tr>
+			<td>Date :</td>
+			<td><?php echo $date ?></td>
+		</tr>
+>>>>>>> 232f54eab7ba80b84f16c1c6a3f830d89a7d3e1d
 	</table>
 	
 	</div>
 	<div class="clearfix"></div>
 	</div>
 	<div style="width: 100%; margin-top:-70px;">
+<<<<<<< HEAD
 	<table border="1" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 12px; margin-top:10px" width="100%">
 		<thead style="background:black; color:white;text-align:center;text-transform: uppercase;">
 			<tr>
 				<th width='120'> Product Code </th>
+=======
+	<table border="1" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 12px;	text-align:left;" width="100%">
+		<thead>
+			<tr>
+				<th width="90"> Product Code </th>
+>>>>>>> 232f54eab7ba80b84f16c1c6a3f830d89a7d3e1d
 				<th> Product Name </th>
 				<th> Qty </th>
 				<th> Price </th>
@@ -277,6 +351,7 @@ window.onload=startclock;
 	</table>
 	
 	</div>
+<<<<<<< HEAD
 	<a href="sales.php" ><button class="btn btn-primary" style="margin-top:20px;"><i class="fa fa-chevron-left" aria-hidden="true"></i> Start New Sale</button></a>
 	<a href="javascript:Clickheretoprint()" ><button class="btn btn-success" style="margin-top:20px;"><i class="fa fa-print" aria-hidden="true"></i> Print</button></a>
 
@@ -288,4 +363,15 @@ window.onload=startclock;
 </div>
 
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
+=======
+	</div>
+	</div>
+	</div>
+<div class="pull-right" style="margin-right:100px;">
+		<a href="javascript:Clickheretoprint()" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print</button></a>
+		</div>	
+</div>
+</div>
+
+>>>>>>> 232f54eab7ba80b84f16c1c6a3f830d89a7d3e1d
 
