@@ -68,7 +68,7 @@ html {
   text-transform: uppercase;
 }
 button.btn.btn-large.btn-primary.btn-block.pull-right {
-  background: darkcyan;
+  background: darkcyan !important;
   border-color: darkcyan;
   text-transform: uppercase;
 }
