@@ -6,15 +6,13 @@
 POS
 </title>
  <link href="css/bootstrap.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css"> 
   <link rel="stylesheet" href="css/font-awesome.min.css">
     <style type="text/css">
-    
       .sidebar-nav {
         padding: 9px 0;
       }
+	  
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
@@ -114,17 +112,22 @@ window.onload=startclock;
 // End -->
 </SCRIPT>
 <body>
-		
+
+
+	
+	<div class="container-fluid">
+      <div class="row-fluid">	
 	<div class="span10">
-	<div class="content" id="content">
-<div style="margin: 0 auto; padding: 20px; font-weight: normal;">
+
+<div class="content" id="content">
+<div style="margin: 0 auto; padding: 20px; width: 900px; font-weight: normal;">
 	<div style="width: 100%; height: 190px;" >
-	<div >
-	<center><div style="font:bold 25px 'Aleo';">Sales Receipt</div>
-	Pharmacy<br>
-	KATN Point of Sale<br>	<br>
+	<div style="width: 900px; float: left;">
+	<center><div style="font:bold 25px  'Aleo';">Sales Receipt</div>
+	
 	</center>
 	<div>
+	<center><p style="margin-top:5px;margin-bottom:10px;">KATN Point Of Sale<br></p>1st Floor, CH. Heights, Citi Housing, Jhelum<br><br></center>
 	<?php
 	$resulta = $db->prepare("SELECT * FROM customer WHERE customer_name= :a");
 	$resulta->bindParam(':a', $cname);
@@ -136,16 +139,20 @@ window.onload=startclock;
 	?>
 	</div>
 	</div>
-	<div style="float: left; height: 70px;">
+	<div style="margin-bottom:20px; float: left; height: 70px;">
 	<table cellpadding="3" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
 
 		<tr>
-			<td>OR No. :</td>
+			<td> <b> Invoice No. :</b></td>
 			<td><?php echo $invoice ?></td>
 		</tr>
 		<tr>
-			<td>Date :</td>
+			<td><b>Order Date :</b></td>
 			<td><?php echo $date ?></td>
+		</tr>
+		<tr>
+			<td><b>Customer Name :</b></td>
+			<td><?php echo $cname ?></td>
 		</tr>
 	</table>
 	
@@ -153,10 +160,10 @@ window.onload=startclock;
 	<div class="clearfix"></div>
 	</div>
 	<div style="width: 100%; margin-top:-70px;">
-	<table border="1" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 12px;	text-align:left;" width="100%">
-		<thead>
+	<table border="1" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 12px; margin-top:10px" width="100%">
+		<thead style="background:black; color:white;text-align:center;text-transform: uppercase;">
 			<tr>
-				<th width="90"> Product Code </th>
+				<th width='120'> Product Code </th>
 				<th> Product Name </th>
 				<th> Qty </th>
 				<th> Price </th>
@@ -270,17 +277,15 @@ window.onload=startclock;
 	</table>
 	
 	</div>
-	
-	</div>
-	
-	</div>
-	<div style="margin-top:10px;margin-left:20px">
-		<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-primary"><i style="margin-right:10px"class="fa fa-angle-left" aria-hidden="true"></i>New Order</button></a>
-		<a href="javascript:Clickheretoprint()" style="font-size:20px;"><button class="btn btn-success"><i class="fa fa-print"></i> Print</button></a>
+	<a href="sales.php" ><button class="btn btn-primary" style="margin-top:20px;"><i class="fa fa-chevron-left" aria-hidden="true"></i> Start New Sale</button></a>
+	<a href="javascript:Clickheretoprint()" ><button class="btn btn-success" style="margin-top:20px;"><i class="fa fa-print" aria-hidden="true"></i> Print</button></a>
+
 	</div>
 	</div>
-	
+	</div>
+
 </div>
 </div>
 
+<script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 

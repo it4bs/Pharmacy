@@ -3,20 +3,18 @@
 	
 <head>
   	<title> POS - Sales </title>
-<link rel='icon' href='./img/pharmacy.png'/>
+	<link rel='icon' href='./img/pharmacy.png'/>
     <meta charset="utf-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
- <link href="css/bootstrap.css" rel="stylesheet">
-
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">  
+ 	<link href="css/bootstrap.css" rel="stylesheet">
   	<link href="vendors/uniform.default.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-  
-  <link rel="stylesheet" href="css/font-awesome.min.css">
+  	<link rel="stylesheet" href="css/font-awesome.min.css">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
-<link href="styles.css" rel="stylesheet" type="text/css">
-<link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="styles.css" rel="stylesheet" type="text/css">
+	<link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <!--sa poip up-->
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -24,6 +22,14 @@
 <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="src/facebox.js" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('a[rel*=facebox]').facebox({
+      loadingImage : 'src/loading.gif',
+      closeImage   : 'src/closelabel.png'
+    })
+  })
+</script>
 <?php
 error_reporting(0);
 	require_once('auth.php');
@@ -81,28 +87,31 @@ if($position=='admin') {
 											
 <input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-<input type="text" name="discount" value="<?php echo $_GET['percent']; ?>" />
+<input type="hidden" name="discount" value="<?php echo $_GET['percent']; ?>" />
 
-<input type="text" name="product" id='srch' placeholder='Enter Product Name/ID...' autocomplete='off' class='form-control' required='required' style="width:350px; height:40px; float:left; margin-left:50px;margin-right:10px" list='list1'/>
+
+<input type="text" name="product" id='srch' placeholder='Enter Product Name/ID...' autocomplete='off' class='form-control' required='required' style="width:70%; height:40px; float:left; margin-left:50px;margin-right:10px" list='list1'/>
+<input type="number" name="qty" value="1" min="1" placeholder="Qty" required='required'>
 <datalist name='product' id='list1'>
 <?php
-	include('../connect.php');
+
+		include('../connect.php');
 		$result = $db->prepare("SELECT * FROM products");
 		$result->execute();
 		for($i=0; $row = $result->fetch(); $i++){
 				$toBeComparedDate = $row['expiry_date'];
 				$today = (new DateTime())->format('Y-m-d');
-				$expired = $toBeComparedDate > $today;
-			if(($row['qty'] > 0) && ($expired)){	
+				$not_expired = $toBeComparedDate > $today;
+			if(($row['qty'] > 0) && ($not_expired)){	
 				?>
 			<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_name']; }?></option>
 		<?php 
+	
 				}
 			?>
 </datalist>
-<input type="number" name="qty" value="1" min="1" max =<?php echo $qty1; ?> placeholder="Qty" required='required'>
 <input type="hidden" name="date" value="<?php echo date("m/d/yy"); ?>" />
-<Button type="submit" class="btn btn-info" style="width: 80px; height:40px; margin-top:-10px; margin-left:5px"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
+<Button type="submit" name='submit1' class="btn btn-info" style="width: 80px; height:40px; margin-top:-10px; margin-left:5px"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
 </form>
 	
 
@@ -171,6 +180,7 @@ if($position=='admin') {
 				<h4>
 				<?php
 				echo $qty;
+				
 				?>
 				</h4>
 			</td>
@@ -185,7 +195,7 @@ if($position=='admin') {
 			  <Button type="submit" name="disc1" value="Calculate Total" class = 'btn btn-primary'><i class="fa fa-calculator" aria-hidden="true"></i>Discount</button>
 			</form> 
 		<?php
-			$percent=$_POST['percent'];
+			$percent=isset($_POST['percent']);
 			$discount_value= ($total_amount / 100) *$percent;
 			$final_price = $total_amount - $discount_value;	 
 		 ?>
@@ -216,7 +226,7 @@ if($position=='admin') {
 			</tr>		
 			<tr>
 			<td colspan="8">
-			<a href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $final_price ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success"><i class="fa fa-money" aria-hidden="true"></i>Generate Bill</button></a>
+			<a rel ='facebox' href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $final_price ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success"><i class="fa fa-money" aria-hidden="true"></i>Generate Bill</button></a>
 			<a href="sales.php"><button class="btn btn-danger" style="margin-bottom: 0px;"><i class="fa fa-times" aria-hidden="true"></i>Cancle Invoice</button></a>
 			</td>
 			<tr>	

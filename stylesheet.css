@@ -4,6 +4,7 @@ html {
   padding: 0;
   height: 100%;
   font-family: "Montserrat";
+  background-color: darkcyan;
 }
 .user_card {
   height: 350px;
@@ -29,7 +30,7 @@ html {
   width: 170px;
   top: -75px;
   border-radius: 50%;
-  background: #60a3bc;
+  background: darkcyan;
   padding: 10px;
   text-align: center;
 }
@@ -43,11 +44,6 @@ html {
 .sform_container {
   margin-top: 100px;
 }
-.login_btn {
-  width: 100%;
-  background: #007bff !important;
-  color: white !important;
-}
 .login_btn:focus {
   box-shadow: none !important;
   outline: 0px !important;
@@ -57,7 +53,7 @@ html {
 }
 
 .input-group-text {
-  background: #60a3bc !important;
+  background: darkcyan !important;
   color: white !important;
   border: 0 !important;
   border-radius: 0.25rem 0 0 0.25rem !important;
@@ -65,15 +61,20 @@ html {
 .input_user,
 .input_pass:focus {
   box-shadow: none !important;
-  outline: 0px !important;
 }
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #60a3bc !important;
+.input_user,
+.input_pass {
+  border-color: darkcyan;
+  text-transform: uppercase;
 }
 button.btn.btn-large.btn-primary.btn-block.pull-right {
-  background-color: #60a3bc !important;
-  border-color: #60a3bc;
+  background: darkcyan;
+  border-color: darkcyan;
+  text-transform: uppercase;
 }
 form {
-  margin-top: 30%;
+  margin-top: 40%;
+}
+footer.page-footer.font-small.blue {
+  font-size: 12px;
 }
